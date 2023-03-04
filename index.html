@@ -16,14 +16,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 </head>
-<body>
+<body style="margin: 0; height: 100%; overflow: hidden;">
 
-    <h1 class="text-center mt-4 mb-4 fw-bold">Snake</h1>
+    <h1 class="text-center mt-4 mb-3 fw-bold">Snake</h1>
 
     <div id="id-score" class="text-center">
-        <p class="fs-3 fw-bold" style="display: contents;" id="text-score">Score:</p>
-        <p class="fs-4 " style="display: contents;" id="score">0</p>
-        <button class="float-end btn btn-info mx-3" onclick="classificaClick()">Classifica</button>
+        <p class="float-start mx-2" style="box-sizing: border-box;">Name: <input type="text" id="name-input" style="width: 80px;" onchange="nameSave(this.value)"></p>
+        <p class="fs-4 fw-bold" style="display: contents;" id="text-score">Score:</p>
+        <p class="fs-5 " style="display: contents;" id="score">0</p>
+        <button class="float-end btn btn-info mx-2" onclick="classificaClick()">Classifica</button>
     </div>
 
 

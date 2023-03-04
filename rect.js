@@ -1,4 +1,4 @@
-let side = 35
+let side = 34
 
 
 

@@ -1,11 +1,3 @@
-''' 
-docker run --name tetrisMongo -p 27017:27017 -dit mongo
-{
-    nome: "pippo",
-    punti: 0
-}
-'''
-
 import pymongo as pym
 import json, socket
 
@@ -25,15 +17,16 @@ def getData():
 
 
 def insertScore(nome, score):
-    
+
     try:
         data = getData()
-        
+
         for x in data:
             if nome == x['nome']:
-                collection.update_one({'nome': nome}, {'$set':{'score': score}})
+                if x['score'] < score:
+                    collection.update_one({'nome': nome}, {'$set':{'score': score}})
                 return
-        
+
         newData = {"nome": nome, "score": int(score)}
         collection.insert_one(newData)
     except:
@@ -43,15 +36,21 @@ def insertScore(nome, score):
 
 def getFirstTen():
     data = list(collection.find().sort('score', pym.DESCENDING).limit(10))
-    return data
-    
+    out = {'data': []}
+    for x in data:
+        out['data'].append({'nome': x['nome'], 'score': x['score']})
+    return out
+
+
+
+
 
 
 
 
 @app.route('/visualizza_classifica',methods = ['GET'])
 def visualizza_classifica():
-    
+
     try:
         return getFirstTen()
     except Exception as e:
@@ -62,9 +61,11 @@ def visualizza_classifica():
 
 @app.route('/add_score',methods = ['POST'])
 def add_score():
-    
-    data = request.get_json()
-    
+
+    data = request.json
+
+    print(data)
+
     try:
         insertScore(data['nome'], int(data['score']))
         return '{"info": "Score aggiunto"}'

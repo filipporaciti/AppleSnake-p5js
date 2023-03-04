@@ -1,6 +1,4 @@
 
-let press = false
-let touchMov = ''
 
 class Snake{
 
@@ -16,7 +14,7 @@ class Snake{
 
     show(){
         this.apple.show()
-        this.controls()
+        controls()
         for(let r of this.bodyRect){
             r.show()
         }
@@ -87,26 +85,10 @@ class Snake{
         }
     }
 
-    controls(){
-        if(keyIsPressed == true || touchMov != ''){
     
-            if ((key == "ArrowLeft" || key == "a" || touchMov == 'l') && !press) {
-                snake.move('l')
-            }
-            if ((key == "ArrowRight" || key == "d" || touchMov == 'r') && !press) {
-                snake.move('r')
-            }
-            if ((key == "ArrowDown" || key == "s" || touchMov == 'b') && !press) {
-                snake.move('b')
-            }
-            if ((key == "ArrowUp" || key == "w" || touchMov == 'u') && !press) {
-                snake.move('u')
-            }
-            press = true
-            touchMov = ''
-          }else{
-            press = false
-          }
-        
-    }
+      
+   
+      
+
+
 }

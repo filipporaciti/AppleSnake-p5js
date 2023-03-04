@@ -1,4 +1,6 @@
 
+setCanvasSize()
+
 
 
 name = document.cookie.split(';')[0].split('=')[1]
@@ -77,4 +79,17 @@ function classificaClick(){
 }
 function gameClick(){
     document.location = "index.html"
+}
+
+
+function setCanvasSize(){
+    while(window.innerHeight < canvasHeight+canvasY || window.innerWidth < canvasWidth){
+        side -= 1
+        canvasHeight = side*20
+        canvasWidth = side*20
+    }
+
+   
+
+    
 }
