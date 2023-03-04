@@ -12,6 +12,11 @@ let touchMov = ''
 
 
 function setup() {
+    while(window.innerHeight < canvasHeight+canvasY || window.innerWidth < canvasWidth){
+        side -= 1
+        canvasHeight = side*20
+        canvasWidth = side*20
+    }
     let canvas = createCanvas(canvasWidth, canvasHeight);
     canvas.position(windowWidth/2-width/2, canvasY)
     snake = new Snake(canvasWidth/2,canvasHeight)

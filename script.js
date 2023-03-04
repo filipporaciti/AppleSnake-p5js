@@ -1,7 +1,4 @@
 
-setCanvasSize()
-
-
 
 name = document.cookie.split(';')[0].split('=')[1]
 
@@ -11,7 +8,7 @@ windowChangeStyle()
 
 refreshClassifica()
 
-function addClassifica(score){
+function addClassifica(){
     name = document.cookie.split(';')[0].split('=')[1]
 
 
@@ -26,7 +23,7 @@ function addClassifica(score){
         body: JSON.stringify(data)
     })
         .then((response) => response.json())
-        .then((data) => refreshClassifica())
+        .then((data) => location.reload())
         
 
 }
@@ -83,6 +80,9 @@ function gameClick(){
 
 
 function setCanvasSize(){
+    side = 35
+    canvasHeight = side*20
+    canvasWidth = side*20
     while(window.innerHeight < canvasHeight+canvasY || window.innerWidth < canvasWidth){
         side -= 1
         canvasHeight = side*20

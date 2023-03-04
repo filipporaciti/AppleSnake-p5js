@@ -65,7 +65,8 @@ class Snake{
         if(this.x == this.apple.x && this.y == this.apple.y){
             this.addElement()
             this.randomApple()
-            score += 10*this.bodyRect.length
+            score += 10*(this.bodyRect.length-3)
+            document.getElementById('score').innerHTML = score
         }
     }
 
@@ -81,7 +82,8 @@ class Snake{
 
         if(this.x < 0 || this.x > canvasWidth-side || this.y < 0 || this.y > canvasHeight-side || collision){
             alert('Game Over')
-            location.reload()
+            addClassifica()
+            
         }
     }
 
