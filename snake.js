@@ -1,0 +1,112 @@
+
+let press = false
+let touchMov = ''
+
+class Snake{
+
+    constructor(x, y){
+        this.color = {r:255,g:255,b:255}
+        this.x = x
+        this.y = y
+        this.scelta = 'u'
+        this.bodyRect = [new Rect(this.x, this.y, color=this.color), new Rect(this.x, this.y, color=this.color), new Rect(this.x, this.y, color=this.color)]
+        this.apple = new Rect(0, 0, {r:255,g:0,b:0})
+        this.randomApple()
+    }
+
+    show(){
+        this.apple.show()
+        this.controls()
+        for(let r of this.bodyRect){
+            r.show()
+        }
+
+    }
+
+
+    randomApple(){
+        this.apple.x = parseInt(random(canvasWidth/side))*side
+        this.apple.y = parseInt(random(canvasHeight/side))*side
+    }
+
+
+    addElement(){
+        this.bodyRect.push(new Rect(this.x, this.y, color=this.color))
+    }
+
+    moveInterval(){
+        this.moveRect()
+        this.gameOver()
+        this.gameWin()
+    }
+
+    moveRect(){
+    
+        if(this.scelta == 'u'){
+            this.y -= side
+        }
+        if(this.scelta == 'b'){
+            this.y += side
+        }
+        if(this.scelta == 'l'){
+            this.x -= side
+        }
+        if(this.scelta == 'r'){
+            this.x += side
+        }
+
+        this.bodyRect.push(new Rect(this.x, this.y, this.color))
+        this.bodyRect.shift()
+    }
+
+    move(scelta){
+        this.scelta = scelta
+    }
+
+    gameWin(){
+        if(this.x == this.apple.x && this.y == this.apple.y){
+            this.addElement()
+            this.randomApple()
+            score += 10*this.bodyRect.length
+        }
+    }
+
+    gameOver(){
+
+        let collision = false
+
+        for(let r of this.bodyRect.slice(0, -1)){
+            if(this.bodyRect[this.bodyRect.length-1].x == r.x && this.bodyRect[this.bodyRect.length-1].y == r.y){
+                collision = true
+            }
+        }
+
+        if(this.x < 0 || this.x > canvasWidth-side || this.y < 0 || this.y > canvasHeight-side || collision){
+            alert('Game Over')
+            location.reload()
+        }
+    }
+
+    controls(){
+        if(keyIsPressed == true || touchMov != ''){
+    
+            if ((key == "ArrowLeft" || key == "a" || touchMov == 'l') && !press) {
+                snake.move('l')
+            }
+            if ((key == "ArrowRight" || key == "d" || touchMov == 'r') && !press) {
+                snake.move('r')
+            }
+            if ((key == "ArrowDown" || key == "s" || touchMov == 'b') && !press) {
+                snake.move('b')
+            }
+            if ((key == "ArrowUp" || key == "w" || touchMov == 'u') && !press) {
+                snake.move('u')
+            }
+            press = true
+            touchMov = ''
+          }else{
+            press = false
+          }
+        
+    }
+}
