@@ -1,7 +1,7 @@
 let canvasWidth = side*20
 let canvasHeight = side*20
 
-const timeInterval = 20000
+const timeInterval = 200
 
 let canvasY = 135
 
