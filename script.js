@@ -16,7 +16,7 @@ function addClassifica(score){
     let data = {'nome': name, 'score': parseInt(score)}
 
     
-    fetch('http://93.48.224.122:8080/add_score', {
+    fetch('http://93.48.224.122:8081/add_score', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ function addClassifica(score){
 function refreshClassifica(){
     
     
-    fetch('http://93.48.224.122:8080/visualizza_classifica')
+    fetch('http://93.48.224.122:8081/visualizza_classifica')
         .then((response) => response.json())
         .then((data) => {
             data = data['data']
