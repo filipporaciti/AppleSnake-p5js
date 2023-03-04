@@ -14,14 +14,12 @@
     <h1 class="text-center mt-4 mb-4 fw-bold">Snake</h1>
 
     <div id="id-score" class="text-center">
-        <p class="fs-3 fw-bold" style="display: contents;" id="text-score">Score:</p>
-        <p class="fs-4 " style="display: contents;" id="score">0</p>
         <button class="float-end btn btn-info mx-3" onclick="gameClick()">Game</button>
     </div>
 
     <div id="id-classifica" class="col-4 m-auto mt-4">
         <p class="fs-3 text-center fw-bold">Classifica</p>
-        <p class="fs-5" style="box-sizing: border-box;">My name: <input type="text" id="name-input" onchange="nameSave(this.value)"></p>
+        <p class="fs-5" style="box-sizing: border-box;">Name: <input type="text" id="name-input" style="width: 150px;" onchange="nameSave(this.value)"></p>
         <p>1° <span id="pos-1"></span></p>
         <p>2° <span id="pos-2"></span></p>
         <p>3° <span id="pos-3"></span></p>
