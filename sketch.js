@@ -10,6 +10,8 @@ let score = 0
 let press = false
 let touchMov = ''
 
+let gameInterval
+
 
 function setup() {
     while(window.innerHeight < canvasHeight+canvasY || window.innerWidth < canvasWidth){

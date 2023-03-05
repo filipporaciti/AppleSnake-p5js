@@ -21,7 +21,7 @@
     <h1 class="text-center mt-4 mb-3 fw-bold">Snake</h1>
 
     <div id="id-score" class="text-center">
-        <p class="float-start mx-2" style="box-sizing: border-box;">Name: <input type="text" id="name-input" style="width: 80px;" onchange="nameSave(this.value)"></p>
+        <p class="float-start mx-2" style="box-sizing: border-box;">Name: <input type="text" id="name-input" style="width: 80px;" onkeyup="nameSave(this.value)" onfocusin="clearInterval(gameInterval)" onfocusout="gameInterval = setInterval(() => snake.moveInterval(), timeInterval)"></p>
         <p class="fs-4 fw-bold" style="display: contents;" id="text-score">Score:</p>
         <p class="fs-5 " style="display: contents;" id="score">0</p>
         <button class="float-end btn btn-info mx-2" onclick="classificaClick()">Classifica</button>
@@ -31,6 +31,22 @@
 
 
     <script src="script.js" type="text/javascript"></script>
+
+
+    <div id="id-classifica" class="col-4 m-auto mt-4" style="display: none;">
+        <p class="fs-3 text-center fw-bold">Classifica</p>
+        <p class="fs-5" style="box-sizing: border-box;">Name: <input type="text" id="name-input" style="width: 150px;" onchange="nameSave(this.value)"></p>
+        <p>1° <span id="pos-1"></span></p>
+        <p>2° <span id="pos-2"></span></p>
+        <p>3° <span id="pos-3"></span></p>
+        <p>4° <span id="pos-4"></span></p>
+        <p>5° <span id="pos-5"></span></p>
+        <p>6° <span id="pos-6"></span></p>
+        <p>7° <span id="pos-7"></span></p>
+        <p>8° <span id="pos-8"></span></p>
+        <p>9° <span id="pos-9"></span></p>
+        <p>10° <span id="pos-10"></span></p>
+    </div>
 
     
 </body>
