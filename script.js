@@ -1,6 +1,3 @@
-
-
-
 name = document.cookie.split(';')[0].split('=')[1]
 
 document.getElementById("name-input").value = name
@@ -55,7 +52,11 @@ function refreshClassifica(){
 
 
 function nameSave(name){
-    document.cookie = "name="+name
+    var now = new Date();
+  var time = now.getTime();
+  var expireTime = time + 1000*43200*500;
+  now.setTime(expireTime);
+    document.cookie = 'name='+name + ';expires='+now.toUTCString()+';path=/'
 }
 
 onresize = (event) => {
