@@ -13,6 +13,8 @@ let touchMov = ''
 let gameInterval
 
 
+
+
 function setup() {
     while(window.innerHeight < canvasHeight+canvasY || window.innerWidth < canvasWidth){
         side -= 1
@@ -79,3 +81,6 @@ function windowResized() {
     canvas.position(windowWidth/2-width/2, canvasY)
     setCanvasSize()
 }
+
+
+
