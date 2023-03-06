@@ -4,6 +4,7 @@ class Snake{
 
     constructor(x, y){
         this.color = {r:255,g:255,b:255}
+        this.headColor = {r:50,g:255,b:50}
         this.x = x
         this.y = y
         this.scelta = 'u'
@@ -53,7 +54,8 @@ class Snake{
             this.x += side
         }
 
-        this.bodyRect.push(new Rect(this.x, this.y, this.color))
+        this.bodyRect[this.bodyRect.length-1].color =  this.color
+        this.bodyRect.push(new Rect(this.x, this.y, this.headColor))
         this.bodyRect.shift()
     }
 

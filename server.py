@@ -19,9 +19,6 @@ def insertScore(nome, score):
 
     try:
         data = getData()
-        
-        
-
         for x in data:
             if nome == x['nome']:
                 if x['score'] < score:
@@ -38,6 +35,14 @@ def getFirstTen():
     for x in data:
         out['data'].append({'nome': x['nome'], 'score': x['score']})
     return out
+def checkNumber(num):
+    x = 0
+    for i in range(1, 20*20):
+        x += i*10
+        if num == x:
+            return True
+    return False
+
 
 
 
@@ -54,16 +59,16 @@ def visualizza_classifica():
     
 @app.route('/add_score',methods = ['POST'])
 def add_score():
-
-    data = request.json
-
-    print(data)
-    
-    for x in data["nome"]:
-        if x not in string.ascii_letters:
-            data["nome"] = data["nome"].replace(x, '')
-
     try:
+        data = request.json
+        print(data)
+        
+        assert checkNumber(int(data['score']))
+        
+        for x in data["nome"]:
+            if x not in string.ascii_letters:
+                data["nome"] = data["nome"].replace(x, '')
+
         insertScore(data['nome'], int(data['score']))
         return '{"info": "Score aggiunto"}'
     except Exception as e:
