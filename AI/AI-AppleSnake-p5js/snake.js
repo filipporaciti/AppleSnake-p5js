@@ -108,9 +108,10 @@ class Snake{
             console.log('Game Over')
             //clearInterval(gameInterval)
             reward -= 1000
+            end=true
             sendReward()
 
-            location.reload()
+            // location.reload()
             
         }
     }

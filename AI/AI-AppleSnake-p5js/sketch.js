@@ -12,6 +12,8 @@ let touchMov = ''
 
 let gameInterval
 
+let end = false
+
 
 
 let x = 0 
@@ -102,6 +104,7 @@ function getAction(){
 
 
 function sendReward(l, x, y, xm, ym, nl, nx, ny, nxm, nym){
+  print('reward: ', reward)
   data = {'l': l, 'x': x, 'y': y, 'xm': xm, 'ym': ym, 'nl': nl, 'nx': nx, 'ny': ny, 'nxm': nxm, 'nym': nym, 'reward': reward}
   fetch('http://192.168.1.253:5050/setAction', {
         method: 'POST',
@@ -111,7 +114,7 @@ function sendReward(l, x, y, xm, ym, nl, nx, ny, nxm, nym){
         body: JSON.stringify(data)
     })
         .then((response) => response.json())
-        // .finally(() => {if (end) location.reload();})
+        .finally(() => {if (end) location.reload();})
   print(reward, x, y)
 }
 
