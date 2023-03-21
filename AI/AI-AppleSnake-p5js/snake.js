@@ -12,6 +12,7 @@ class Snake{
         this.apple = new Rect(0, 0, {r:255,g:0,b:0})
         //this.randomApple()
         this.winTime = 1
+        this.cyclic = 100
     }
 
     show(){
@@ -60,6 +61,11 @@ class Snake{
         this.bodyRect.push(new Rect(this.x, this.y, this.headColor))
         this.bodyRect.shift()
         reward -= 1
+        this.cyclic -= 1
+        if (this.cyclic == 0){
+            console.log('Cyclic terminate')
+            location.reload()
+        }
 
         let nx = snake.bodyRect[snake.bodyRect.length-1].x/side 
         let ny = snake.bodyRect[snake.bodyRect.length-1].y/side 
@@ -82,6 +88,8 @@ class Snake{
             this.winTime += 1
             document.getElementById('score').innerHTML = score
             reward += 100
+            this.cyclic = 100
+
         }
     }
 
