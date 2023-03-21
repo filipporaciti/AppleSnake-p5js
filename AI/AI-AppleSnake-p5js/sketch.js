@@ -78,7 +78,7 @@ function getAction(){
 
   //clearInterval(gameInterval)
 
-  fetch('http://192.168.1.56:8081/getAction?' + new URLSearchParams({
+  fetch('http://192.168.1.253:5050/getAction?' + new URLSearchParams({
     l: l,
     x: x,
     y: y,
@@ -103,7 +103,7 @@ function getAction(){
 
 function sendReward(l, x, y, xm, ym, nl, nx, ny, nxm, nym){
   data = {'l': l, 'x': x, 'y': y, 'xm': xm, 'ym': ym, 'nl': nl, 'nx': nx, 'ny': ny, 'nxm': nxm, 'nym': nym, 'reward': reward}
-  fetch('http://192.168.1.56:8081/setAction', {
+  fetch('http://192.168.1.253:5050/setAction', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ function sendReward(l, x, y, xm, ym, nl, nx, ny, nxm, nym){
     })
         .then((response) => response.json())
         // .finally(() => {if (end) location.reload();})
-  print(reward)
+  print(reward, x, y)
 }
 
 

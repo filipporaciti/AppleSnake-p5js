@@ -98,11 +98,11 @@ class Snake{
 
         let collision = false
 
-        // for(let r of this.bodyRect.slice(0, -1)){
-        //     if(this.bodyRect[this.bodyRect.length-1].x == r.x && this.bodyRect[this.bodyRect.length-1].y == r.y){
-        //         collision = true
-        //     }
-        // }
+        for(let r of this.bodyRect.slice(0, -1)){
+            if(this.bodyRect[this.bodyRect.length-1].x == r.x && this.bodyRect[this.bodyRect.length-1].y == r.y){
+                collision = true
+            }
+        }
 
         if(this.x < 0 || this.x > canvasWidth-side || this.y < 0 || this.y > canvasHeight-side || collision){
             console.log('Game Over')
