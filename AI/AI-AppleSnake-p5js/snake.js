@@ -35,11 +35,12 @@ class Snake{
     }
 
     moveInterval(){
-        l, x, y, xm, ym = getAction()
-        nl, nx, ny, nxm, nym = this.moveRect()
-        sendReward(l, x, y, xm, ym, nl, nx, ny, nxm, nym)
+        getAction()
+        this.moveRect()
         this.gameOver()
         this.gameWin()
+        sendReward(l, x, y, xm, ym, nl, nx, ny, nxm, nym)
+
     }
 
     moveRect(){
@@ -60,6 +61,11 @@ class Snake{
         this.bodyRect[this.bodyRect.length-1].color =  this.color
         this.bodyRect.push(new Rect(this.x, this.y, this.headColor))
         this.bodyRect.shift()
+
+        document.getElementById('text-x').innerHTML = x
+        document.getElementById('text-y').innerHTML = y
+
+
         reward -= 1
         this.cyclic -= 1
         if (this.cyclic == 0){
@@ -67,13 +73,13 @@ class Snake{
             location.reload()
         }
 
-        let nx = snake.bodyRect[snake.bodyRect.length-1].x/side 
-        let ny = snake.bodyRect[snake.bodyRect.length-1].y/side 
-        let nxm = snake.apple.x/side 
-        let nym = snake.apple.y/side 
-        let nl = snake.winTime
+        nx = snake.bodyRect[snake.bodyRect.length-1].x/side 
+        ny = snake.bodyRect[snake.bodyRect.length-1].y/side 
+        nxm = snake.apple.x/side 
+        nym = snake.apple.y/side 
+        nl = snake.winTime
 
-        return nl, nx, ny, nxm, nym
+        
     }
 
     move(scelta){
@@ -109,7 +115,7 @@ class Snake{
             //clearInterval(gameInterval)
             reward -= 1000
             end=true
-            sendReward()
+
 
             // location.reload()
             
