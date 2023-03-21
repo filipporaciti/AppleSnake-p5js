@@ -105,7 +105,7 @@ function getAction(){
 function sendReward(l, x, y, xm, ym, nl, nx, ny, nxm, nym){
   print('reward: ', reward)
   data = {'l': l, 'x': x, 'y': y, 'xm': xm, 'ym': ym, 'nl': nl, 'nx': nx, 'ny': ny, 'nxm': nxm, 'nym': nym, 'reward': reward}
-  fetch('http://192.168.1.56:8081/setAction', {
+  fetch('http://192.168.1.253:5050/setAction', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
