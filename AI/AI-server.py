@@ -9,7 +9,8 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 cors = CORS(app)
 
-client = pym.MongoClient('192.168.1.253', 27017)
+# client = pym.MongoClient('192.168.1.253', 27017)
+client = pym.MongoClient('localhost', 27017)
 db = client['snake']
 collection = db['qtable']
 
@@ -23,7 +24,7 @@ collection = db['qtable']
 #                 for ym in range(20):
 #                     collection.insert_one({'l': l, 'x': x, 'y': y, 'xm': xm, 'ym': ym, 'action': [np.random.rand(), np.random.rand(), np.random.rand(), np.random.rand()]})
            
-           
+
 
 def getQtableValue(l, x, y, xm, ym):
     return collection.find_one({'l': int(l), 'x': int(x), 'y': int(y), 'xm': int(xm), 'ym': int(ym)})['action']
