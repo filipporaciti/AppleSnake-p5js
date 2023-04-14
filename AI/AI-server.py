@@ -16,15 +16,15 @@ collection = db['qtable']
 
 
 # Insert all data
-# for l in range(1, 11):
-#     print(l)
-#     for x in range(20):
-#         for y in range(20):
-#             for xm in range(20):
-#                 for ym in range(20):
-#                     collection.insert_one({'l': l, 'x': x, 'y': y, 'xm': xm, 'ym': ym, 'action': [np.random.rand(), np.random.rand(), np.random.rand(), np.random.rand()]})
+for l in range(1, 2):
+    print(l)
+    for x in range(20):
+        for y in range(20):
+            for xm in range(20):
+                for ym in range(20):
+                    collection.insert_one({'l': l, 'x': x, 'y': y, 'xm': xm, 'ym': ym, 'action': [np.random.rand(), np.random.rand(), np.random.rand(), np.random.rand()]})
            
-
+exit()
 
 def getQtableValue(l, x, y, xm, ym):
     return collection.find_one({'l': int(l), 'x': int(x), 'y': int(y), 'xm': int(xm), 'ym': int(ym)})['action']

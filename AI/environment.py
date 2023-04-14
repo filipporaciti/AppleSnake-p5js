@@ -29,7 +29,7 @@ class Snake:
         self.snake.pop(0) 
         
         
-        if x > 19 or y > 19 or x < 0 or y < 0 or self.snake.count((x, y)) != 1:
+        if x > 19 or y > 19 or x < 0 or y < 0 or self.snake.count((x, y)) > 1:
             # Game over
             self.reward -= 100
             return False
