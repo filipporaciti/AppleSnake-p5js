@@ -29,7 +29,7 @@ def setQtableValue(l, x, y, xm, ym, nl, nx, ny, nxm, nym, reward):
     collection.update_one({'l': l, 'x': x, 'y': y, 'xm': xm, 'ym': ym}, {'$set': {'action': newArray}})
 
 for x in range(20):
-    for y in range(19, 0, -1):
+    for y in range(20):
         print(x, y)
         buffer = []
         cont = True
@@ -40,13 +40,13 @@ for x in range(20):
                 act = 0
                 
                 
+                qtValue = getQtableValue(pos[0], pos[1], pos[2], pos[3], pos[4])
                 if np.random.uniform() == epsilon:
                     act = np.random.choice(range(4))
                 else:
-                    act = getQtableValue(pos[0], pos[1], pos[2], pos[3], pos[4])
-                    act = act.index(max(act))
+                    act = qtValue.index(max(qtValue))
                     
-                reward, uscita = s.action(act, show=True)
+                reward, uscita = s.action(act)
                 newPos = s.get_obs()
                 
                 setQtableValue(pos[0], pos[1], pos[2], pos[3], pos[4], newPos[0], newPos[1], newPos[2], newPos[3], newPos[4], reward)
@@ -70,4 +70,3 @@ for x in range(20):
                     break
 
         time.sleep(1)
-        
