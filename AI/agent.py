@@ -4,8 +4,8 @@ import numpy as np
 import time
 
 
-client = pym.MongoClient('localhost', 27017)
-# client = pym.MongoClient('192.168.1.253', 27017)
+# client = pym.MongoClient('localhost', 27017)
+client = pym.MongoClient('192.168.1.253', 27017)
 db = client['snake']
 collection = db['qtable']
 
@@ -46,7 +46,7 @@ for x in range(20):
                     act = getQtableValue(pos[0], pos[1], pos[2], pos[3], pos[4])
                     act = act.index(max(act))
                     
-                reward, uscita = s.action(act)
+                reward, uscita = s.action(act, show=True)
                 newPos = s.get_obs()
                 
                 setQtableValue(pos[0], pos[1], pos[2], pos[3], pos[4], newPos[0], newPos[1], newPos[2], newPos[3], newPos[4], reward)

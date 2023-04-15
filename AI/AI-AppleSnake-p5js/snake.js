@@ -6,13 +6,12 @@ class Snake{
         this.color = {r:255,g:255,b:255}
         this.headColor = {r:50,g:255,b:50}
         this.x = x
-        this.y = y
+        this.y = y - side*2
         this.scelta = 'u'
         this.bodyRect = [new Rect(this.x, this.y, color=this.color), new Rect(this.x, this.y, color=this.color), new Rect(this.x, this.y, color=this.color)]
-        this.apple = new Rect(0, 0, {r:255,g:0,b:0})
-        //this.randomApple()
+        this.apple = new Rect(side*0, side*18, {r:255,g:0,b:0})
+        this.randomApple()
         this.winTime = 1
-        this.cyclic = 100
     }
 
     show(){
@@ -39,7 +38,6 @@ class Snake{
         this.moveRect()
         this.gameOver()
         this.gameWin()
-        sendReward(l, x, y, xm, ym, nl, nx, ny, nxm, nym)
 
     }
 
@@ -65,21 +63,6 @@ class Snake{
         document.getElementById('text-x').innerHTML = x
         document.getElementById('text-y').innerHTML = y
 
-
-        reward -= 1
-        this.cyclic -= 1
-        if (this.cyclic == 0){
-            console.log('Cyclic terminate')
-            location.reload()
-        }
-
-        nx = snake.bodyRect[snake.bodyRect.length-1].x/side 
-        ny = snake.bodyRect[snake.bodyRect.length-1].y/side 
-        nxm = snake.apple.x/side 
-        nym = snake.apple.y/side 
-        nl = snake.winTime
-
-        
     }
 
     move(scelta){
@@ -93,8 +76,8 @@ class Snake{
             score += 10*(this.bodyRect.length-3)
             this.winTime += 1
             document.getElementById('score').innerHTML = score
-            reward += 100
-            this.cyclic = 100
+            location.reload()
+
 
         }
     }
@@ -112,8 +95,8 @@ class Snake{
 
         if(this.x < 0 || this.x > canvasWidth-side || this.y < 0 || this.y > canvasHeight-side || collision){
             console.log('Game Over')
+            location.reload()
             //clearInterval(gameInterval)
-            reward -= 1000
             end=true
 
 

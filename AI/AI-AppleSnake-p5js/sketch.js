@@ -1,20 +1,12 @@
 let canvasWidth = side*20
 let canvasHeight = side*20
-
 const timeInterval = 500
-
 let canvasY = 135
-
 let score = 0
-
 let press = false
 let touchMov = ''
-
 let gameInterval
-
 let end = false
-
-
 
 let x = 0 
 let y = 0 
@@ -22,13 +14,6 @@ let xm = 0
 let ym = 0
 let l = 0
 
-let nx = 0 
-let ny = 0 
-let nxm = 0 
-let nym = 0
-let nl = 0
-
-let reward = 100
 
 
 function setup() {
@@ -48,7 +33,9 @@ function setup() {
 function draw() {
     background(0)
 
+    getAction()
     snake.show()
+
 
 }
 
@@ -80,7 +67,7 @@ function getAction(){
 
   //clearInterval(gameInterval)
 
-  fetch('http://192.168.1.253:5050/getAction?' + new URLSearchParams({
+  fetch('http://192.168.1.56:8081/getAction?' + new URLSearchParams({
     l: l,
     x: x,
     y: y,
@@ -100,27 +87,6 @@ function getAction(){
       
   })
 }
-
-
-function sendReward(l, x, y, xm, ym, nl, nx, ny, nxm, nym){
-  print('reward: ', reward)
-  data = {'l': l, 'x': x, 'y': y, 'xm': xm, 'ym': ym, 'nl': nl, 'nx': nx, 'ny': ny, 'nxm': nxm, 'nym': nym, 'reward': reward}
-  fetch('http://192.168.1.253:5050/setAction', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    })
-        .then((response) => response.json())
-        .finally(() => {
-          if (end) {
-            location.reload();
-          }
-        })
-  print(reward, x, y)
-}
-
 
   
 function windowResized() {
