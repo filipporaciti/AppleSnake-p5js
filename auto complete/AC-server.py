@@ -11,7 +11,7 @@ app = Flask(__name__)
 cors = CORS(app)
 
 
-def createDataTable(xm, ym):
+def createDataTable(xm, ym, snakeArray):
     data = [[0 for _ in range(20)] for _ in range(20)]
     data[ym][xm] = 100
 
@@ -54,6 +54,8 @@ def createDataTable(xm, ym):
                 data[ym][xt] = value-1
                 value -= 1
                 xt -= 1
+    for a in snakeArray:
+        data[a[0]][a[1]] = -10000000
     return data
                 
 
@@ -65,8 +67,11 @@ def getAction():
         y = int(request.args.get('y'))
         xm = int(request.args.get('xm'))
         ym = int(request.args.get('ym'))
-        
-        data = createDataTable(xm, ym)
+        snakeArray = request.args.get('snakeArray')
+        snakeArray = json.loads(snakeArray)
+    
+
+        data = createDataTable(xm, ym, snakeArray)
         
         a = [data[y-1][x], data[y][x-1], data[y+1][x], data[y][x+1]]
         

@@ -16,6 +16,8 @@ let l = 0
 
 
 
+
+
 function setup() {
     while(window.innerHeight < canvasHeight+canvasY || window.innerWidth < canvasWidth){
         side -= 1
@@ -33,7 +35,7 @@ function setup() {
 function draw() {
     background(0)
 
-    getAction()
+
     snake.show()
 
 
@@ -66,20 +68,33 @@ function getAction(){
   l = snake.winTime
 
   //clearInterval(gameInterval)
+  snakeArray = []
 
-  fetch('http://192.168.1.56:8081/getAction?' + new URLSearchParams({
+  for(let x of snake.bodyRect){
+    snakeArray.push([x.x/side, x.y/side])
+  }
+
+
+  fetch('http://192.168.1.66:8081/getAction?' + new URLSearchParams({
     l: l,
     x: x,
     y: y,
     xm: xm,
-    ym: ym
+    ym: ym,
+    snakeArray: JSON.stringify(snakeArray)
   }))
   .then((response) => response.json())
   .then((data) => {
       if(data['action'] == 'Errore getAction'){
+        console.log('Errorreeeeee')
+        location.reload()
         // print(x, y, xm, ym, l)
       }else{
         controls(data['action'])
+        snake.moveRect()
+        snake.gameOver()
+        snake.gameWin()
+
       }
       
   //gameInterval = setInterval(() => snake.moveInterval(), timeInterval)

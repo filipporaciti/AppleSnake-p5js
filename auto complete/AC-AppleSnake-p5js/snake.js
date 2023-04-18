@@ -35,9 +35,7 @@ class Snake{
 
     moveInterval(){
         getAction()
-        this.moveRect()
-        this.gameOver()
-        this.gameWin()
+        
 
     }
 
@@ -76,7 +74,7 @@ class Snake{
             score += 10*(this.bodyRect.length-3)
             this.winTime += 1
             document.getElementById('score').innerHTML = score
-            location.reload()
+            // location.reload()
 
 
         }
