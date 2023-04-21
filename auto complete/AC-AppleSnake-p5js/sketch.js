@@ -1,6 +1,6 @@
 let canvasWidth = side*20
 let canvasHeight = side*20
-const timeInterval = 500
+const timeInterval = 50
 let canvasY = 135
 let score = 0
 let press = false
@@ -75,7 +75,7 @@ function getAction(){
   }
 
 
-  fetch('http://192.168.1.66:8081/getAction?' + new URLSearchParams({
+  fetch('http://127.0.0.1:8081/getAction?' + new URLSearchParams({
     l: l,
     x: x,
     y: y,

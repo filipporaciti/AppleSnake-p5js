@@ -55,7 +55,7 @@ def createDataTable(xm, ym, snakeArray):
                 value -= 1
                 xt -= 1
     for a in snakeArray:
-        data[a[0]][a[1]] = -10000000
+        data[a[1]][a[0]] = -100
     return data
                 
 
@@ -73,7 +73,30 @@ def getAction():
 
         data = createDataTable(xm, ym, snakeArray)
         
-        a = [data[y-1][x], data[y][x-1], data[y+1][x], data[y][x+1]]
+        a = []
+        # data[y-1][x], data[y][x-1], data[y+1][x], data[y][x+1]
+        
+        if y > 0:
+            a.append(data[y-1][x])
+        else:
+            a.append(-100)
+        
+        if x > 0:
+            a.append(data[y][x-1])
+        else:
+            a.append(-100)
+            
+        if y < 19:
+            a.append(data[y+1][x])
+        else:
+            a.append(-100)
+            
+        if x < 19:
+            a.append(data[y][x+1])
+        else:
+            a.append(-100)
+            
+        
         
         action = a.index(max(a))
                 
@@ -85,10 +108,10 @@ def getAction():
     
 
 
+#   To get ip 
+# s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+# s.connect(("8.8.8.8", 80))
+# ip = s.getsockname()[0]
+# s.close()
 
-s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-s.connect(("8.8.8.8", 80))
-ip = s.getsockname()[0]
-s.close()
-
-app.run(host=ip, port=8081)
+app.run(host='127.0.0.1', port=8081)
