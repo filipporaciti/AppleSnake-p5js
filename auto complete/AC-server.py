@@ -15,18 +15,6 @@ def createDataTable(xm, ym, snakeArray):
     data = [[0 for _ in range(20)] for _ in range(20)]
     data[ym][xm] = 100
 
-    xt = xm+1
-    value = 99
-    while xt < 20:
-        data[ym][xt] = value
-        value -= 1
-        xt += 1
-    xt = xm-1
-    value = 99
-    while xt >= 0:
-        data[ym][xt] = value
-        value -= 1
-        xt -= 1
     yt = ym-1
     value = 99
     while yt >= 0:

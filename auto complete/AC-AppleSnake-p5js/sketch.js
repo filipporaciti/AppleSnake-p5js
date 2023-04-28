@@ -1,6 +1,6 @@
 let canvasWidth = side*20
 let canvasHeight = side*20
-const timeInterval = 50
+const timeInterval = 80
 let canvasY = 135
 let score = 0
 let press = false
